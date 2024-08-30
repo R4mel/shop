@@ -35,7 +35,11 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    String write(String title, String price) {
+    String write(String title, Integer price) {
+        Item item = new Item();
+        item.setTitle(title);
+        item.setPrice(price);
+        itemRepository.save(item);
         return "redirect:/list";
     }
 }
