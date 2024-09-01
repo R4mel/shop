@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -35,10 +36,8 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    String write(String title, Integer price) {
-        Item item = new Item();
-        item.setTitle(title);
-        item.setPrice(price);
+    String write(@ModelAttribute Item item) {
+        System.out.println("item = " + item);
         itemRepository.save(item);
         return "redirect:/list";
     }
