@@ -16,10 +16,11 @@ import java.util.Optional;
 public class ItemController {
 
     private final ItemRepository itemRepository;
+    private final ItemService itemService;
 
     @GetMapping("/list")
     String list(Model model) {
-        List<Item> result = itemRepository.findAll();
+        List<Item> result = itemService.findAll();
 //        model.addAttribute("전달할데이터이름", "데이터");
         model.addAttribute("items", result);
         return "list.html";
@@ -39,8 +40,7 @@ public class ItemController {
 
     @PostMapping("/add")
     String write(@ModelAttribute Item item) {
-        System.out.println("item = " + item);
-        itemRepository.save(item);
+        itemService.saveItem(item);
         return "redirect:/list";
     }
 
@@ -48,7 +48,7 @@ public class ItemController {
     String detail(@PathVariable Long id, Model model) {
         // throw new Exception();
         try {
-            Optional<Item> result = itemRepository.findById(id);
+            Optional<Item> result = itemService.findById(id);
             if (result.isPresent()) {
                 model.addAttribute("item", result.get());
                 return "detail.html";
@@ -66,4 +66,13 @@ public class ItemController {
 //    public void handler() {
 //        return ResponseEntity.status().body();
 //    }
+
+    /*
+    수정 기능?
+    1. 수정 버튼 누르면 글 수정 페이지로
+    2. 수정페이지엔 기존내용이 채워진 폼 있음
+    3. 전송 누르면 그걸로 DB 수정
+     */
+
+    
 }
