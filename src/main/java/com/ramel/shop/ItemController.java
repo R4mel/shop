@@ -3,10 +3,7 @@ package com.ramel.shop;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -74,5 +71,10 @@ public class ItemController {
     3. 전송 누르면 그걸로 DB 수정
      */
 
-    
+    @PutMapping("/modify/{id}")
+    String modify(@PathVariable Long id, Model model) {
+        Optional<Item> result = itemService.findById(id);
+        return "detail.html";
+    }
+
 }
