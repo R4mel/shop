@@ -19,6 +19,7 @@
         <h4 th:text="${i.title}"></h4>
         <a th:href="@{'/detail/' + ${i.id}}">링크</a>
         <p th:text="${i.price}"></p>
+        <a th:href="@{'/modify/' + ${i.id}}">modify</a>
     </div>
 </div>
 

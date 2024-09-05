@@ -11,15 +11,11 @@
 
 <div th:replace="~{nav.html::navbar}"></div>
 
-<div class="modify">
-    <h4>수정페이지</h4>
-    <img src="https://placehold.co/300">
-    <div>
-        <h4 th:text="${item.title}"></h4>
-        <p th:text="${item.price}"></p>
-    </div>
-</div>
-
+<form action="/modify" method="POST">
+    <input name="title" th:value="${item.title}">
+    <input name="content" th:value="${item.price}">
+    <button type="submit">전송</button>
+</form>
 
 </body>
 </html>
