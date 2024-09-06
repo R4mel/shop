@@ -24,4 +24,14 @@ public class ItemService {
     public Optional<Item> findById(Long id) {
         return itemRepository.findById(id);
     }
+
+    public void modifyItem(Long id, String title, Integer price) throws Exception {
+        Item item = new Item();
+        if (!title.isEmpty() && title.length() < 100) {
+            item.setId(id);
+            item.setTitle(title);
+            item.setPrice(price);
+            itemRepository.save(item);
+        } else throw new Exception();
+    }
 }

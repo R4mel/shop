@@ -84,12 +84,8 @@ public class ItemController {
     }
 
     @PostMapping("/modify")
-    String modifyItem(@RequestParam String title, @RequestParam Integer price, @RequestParam Long id) {
-        Item item = new Item();
-        item.setId(id);
-        item.setTitle(title);
-        item.setPrice(price);
-        itemRepository.save(item);
+    String modifyItem(@RequestParam String title, @RequestParam Integer price, @RequestParam Long id) throws Exception {
+        itemService.modifyItem(id, title, price);
         return "redirect:/list";
     }
 }
