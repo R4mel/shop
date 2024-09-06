@@ -3,10 +3,7 @@ package com.ramel.shop;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +22,7 @@ public class ItemController {
         model.addAttribute("items", result);
         return "list.html";
     }
-    
+
     /*
     상품추가 기능?
     1. 상품 이름, 가격 작성할 수 있는 페이지와 폼
@@ -78,11 +75,22 @@ public class ItemController {
     public String modify(@PathVariable Long id, Model model) {
         Optional<Item> item = itemService.findById(id);
         if (item.isPresent()) {
+            itemRepository.save(item.get());
             model.addAttribute("item", item.get());
             return "modify.html";
         } else {
             return "redirect:/list";
         }
+    }
+
+    @PostMapping("/modify")
+    String modifyItem(@RequestParam String title, @RequestParam Integer price, @RequestParam Long id) {
+        Item item = new Item();
+        item.setId(id);
+        item.setTitle(title);
+        item.setPrice(price);
+        itemRepository.save(item);
+        return "redirect:/list";
     }
 }
 

@@ -12,8 +12,9 @@
 <div th:replace="~{nav.html::navbar}"></div>
 
 <form action="/modify" method="POST">
+    <input name="id" th:value="${item.id}" style="display:none">
     <input name="title" th:value="${item.title}">
-    <input name="content" th:value="${item.price}">
+    <input name="price" th:value="${item.price}">
     <button type="submit">전송</button>
 </form>
 
