@@ -7,6 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="/main.css" rel="stylesheet">
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a:focus {
+            text-decoration: none;
+        }
+
+        a:hover, a:active {
+            text-decoration: none;
+        }</style>
 </head>
 <body>
 
@@ -17,9 +38,21 @@
     <img src="https://placehold.co/300">
     <div>
         <h4 th:text="${i.title}"></h4>
-        <a th:href="@{'/detail/' + ${i.id}}">링크</a>
         <p th:text="${i.price}"></p>
-        <a th:href="@{'/modify/' + ${i.id}}">modify</a>
+        <button class="detail">
+            <a th:href="@{'/detail/' + ${i.id}}">링크</a>
+        </button>
+        <button class="modify">
+            <a th:href="@{'/modify/' + ${i.id}}">수정</a>
+        </button>
+        <button class="delete"
+                th:onclick="fetch('/delete?id=[[${i.id}]]', {method : 'DELETE'})
+                .then(r => r.text())
+                .then(() => {
+                    location.reload();
+                })
+        ">삭제
+        </button>
     </div>
 </div>
 

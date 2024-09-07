@@ -46,7 +46,7 @@ input {
     display: block;
 }
 
-.detail .modify {
+.detail .modify .delete {
     text-align: center;
 }
 
@@ -54,4 +54,9 @@ input {
     max-width: 30%;
     display: block;
     margin: auto;
+}
+
+button > a {
+    text-decoration: none;
+    color: white;
 }

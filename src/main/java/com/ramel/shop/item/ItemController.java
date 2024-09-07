@@ -1,4 +1,4 @@
-package com.ramel.shop;
+package com.ramel.shop.item;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -88,5 +88,25 @@ public class ItemController {
         itemService.modifyItem(id, title, price);
         return "redirect:/list";
     }
+
+    /*
+    삭제 기능?
+    1. 상품마다 삭제버튼 만들기
+    2. 누르면 서버에 요청하고 서버는 DB에 있던 행 삭제
+     */
+    @DeleteMapping("/delete")
+    public String deleteItem(@RequestParam Long id) {
+        Optional<Item> Item = itemService.findById(id);
+        if (Item.isPresent()) {
+            itemRepository.deleteById(id);
+        }
+        return "redirect:/list";
+    }
+
+    /*
+    1. 새로고침없이 요청날리고 데이터 받아올려면 AJAX
+    2. query string, URL parameter 써도 서버로 데이터 전송가능
+    3. 자바스크립트 안에 Thymeleaf 변수 넣기 가능
+     */
 }
 

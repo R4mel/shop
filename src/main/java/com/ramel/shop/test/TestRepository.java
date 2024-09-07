@@ -1,4 +1,4 @@
-package com.ramel.shop;
+package com.ramel.shop.test;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

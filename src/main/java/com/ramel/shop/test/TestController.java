@@ -1,4 +1,4 @@
-package com.ramel.shop;
+package com.ramel.shop.test;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
