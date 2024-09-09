@@ -108,9 +108,5 @@ public class ItemController {
     2. query string, URL parameter 써도 서버로 데이터 전송가능
     3. 자바스크립트 안에 Thymeleaf 변수 넣기 가능
      */
-    
-    /*
-    @RequestParam, @PathVariable 차이 공부
-     */
 }
 
