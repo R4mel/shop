@@ -108,5 +108,13 @@ public class ItemController {
     2. query string, URL parameter 써도 서버로 데이터 전송가능
     3. 자바스크립트 안에 Thymeleaf 변수 넣기 가능
      */
+
+    /*
+    회원가입 기능?
+    1. 회원가입페이지 필요
+    2. username/password/displayName 입력하면 DB 저장(비번은 hashing해서 저장)
+    4. 테이블 이름은 Member
+     */
+
 }
 

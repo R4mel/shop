@@ -13,45 +13,30 @@
             color: black;
         }
 
-        a:visited {
+        a:visited, a:hover, a:focus, a:active {
             text-decoration: none;
         }
-
-        a:hover {
-            text-decoration: none;
-        }
-
-        a:focus {
-            text-decoration: none;
-        }
-
-        a:hover, a:active {
-            text-decoration: none;
-        }</style>
+    </style>
 </head>
 <body>
 
 <div th:replace="~{nav.html::navbar}"></div>
 
-
 <div class="card" th:each="i : ${items}">
-    <img src="https://placehold.co/300">
+    <img src="https://placehold.co/300" alt="Item Image">
     <div>
         <h4 th:text="${i.title}"></h4>
         <p th:text="${i.price}"></p>
-        <button class="detail">
-            <a th:href="@{'/detail/' + ${i.id}}">링크</a>
-        </button>
-        <button class="modify">
-            <a th:href="@{'/modify/' + ${i.id}}">수정</a>
-        </button>
+
+        <a class="detail" th:href="@{'/detail/' + ${i.id}}">링크</a>
+        <a class="modify" th:href="@{'/modify/' + ${i.id}}">수정</a>
         <button class="delete"
                 th:onclick="fetch('/delete?id=[[${i.id}]]', {method : 'DELETE'})
                 .then(r => r.text())
                 .then(() => {
                     location.reload();
                 })
-        ">삭제
+                .catch(err => console.error('Error:', err))">삭제
         </button>
     </div>
 </div>
